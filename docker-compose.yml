@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  tradesdb:
+    image: postgres
+    networks:
+      - postgres_sqlmesh_poc_network
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tradesdb
+    volumes:
+      - ./database/data:/docker-entrypoint-initdb.d
+
+networks:
+  postgres_sqlmesh_poc_network:
+    driver: bridge
